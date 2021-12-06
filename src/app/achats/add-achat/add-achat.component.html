@@ -1,0 +1,23 @@
+<form ngForm #achatForm class="form" (submit)="onSubmit(); achatForm.reset();">
+    <mat-form-field>
+        <mat-label>Nom du Produit</mat-label>
+        <input matInput placeholder="Produit" [(ngModel)]="nomProduit" name="nom">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nom du Magasin</mat-label>
+        <input matInput placeholder="Magasin" [(ngModel)]="nomMagasin" name="magasin">
+      </mat-form-field>
+      
+    <mat-form-field appearance="fill">
+      <mat-label>Date de l'achat</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dateAchat" name="dateA">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <button mat-stroked-button color="primary">
+      Ajouter un achat
+    </button>
+  </form>
+  

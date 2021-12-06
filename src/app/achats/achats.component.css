@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+  }
+.container {
+  margin-top: 20px;
+}
+
+.foot{
+  font-size: 20px;
+  margin-left: 15px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }

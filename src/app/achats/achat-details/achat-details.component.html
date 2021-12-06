@@ -1,0 +1,38 @@
+<section >
+    <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="[row]" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{i}}</td>
+      </ng-container>
+  
+      <!-- Produit Column -->
+      <ng-container matColumnDef="produit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Produit </th>
+        <td mat-cell *matCellDef="let row"> {{row.produit}} </td>
+      </ng-container>
+  
+      <!-- Magasin Column -->
+      <ng-container matColumnDef="magasin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Magasin </th>
+        <td mat-cell *matCellDef="let row"> {{row.magasin}} </td>
+      </ng-container>
+  
+      <!-- Date Achat Column -->
+      <ng-container matColumnDef="dateAchat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de l'achat </th>
+        <td mat-cell *matCellDef="let row"> {{row.dateAchat | date}} </td>
+      </ng-container>
+      <!-- Date Validation Column -->
+      <ng-container matColumnDef="dateValidation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de la validation </th>
+        <td mat-cell *matCellDef="let row"> {{row.dateValidation | date}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</section>
+  
