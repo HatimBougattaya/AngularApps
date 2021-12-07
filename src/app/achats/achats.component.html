@@ -61,9 +61,15 @@
             <ng-template mat-tab-label>
                 <mat-icon>post_add</mat-icon>
             </ng-template>
-            <label>Ajouter un achat</label>
-                <app-add-achat  (nouveauAchat)="onNouveauAchat($event)">
-                </app-add-achat>
+                  <mat-card>
+                      <mat-card-title>Ajouter un achat</mat-card-title>
+                      <mat-card-subtitle>Formulaire</mat-card-subtitle>
+                    <mat-card-content>
+                      <app-add-achat  (nouveauAchat)="onNouveauAchat($event)">
+                      </app-add-achat>       
+                    </mat-card-content>
+                  </mat-card>
+               
         </mat-tab>
     </mat-tab-group>
 </div>
