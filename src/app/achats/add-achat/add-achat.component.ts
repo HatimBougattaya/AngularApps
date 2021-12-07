@@ -25,6 +25,7 @@ export class AddAchatComponent implements OnInit {
       newAchat.magasin = this.nomMagasin;
       newAchat.valid = false;
       newAchat.dateValidation = undefined;
+      newAchat.dateAchat = this.dateAchat;
 
       this.nouveauAchat.emit(newAchat);
     }

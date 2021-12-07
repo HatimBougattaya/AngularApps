@@ -8,6 +8,11 @@ import {StatutAchat} from '../achats/statutAchat.model';
 export class AchatsService {
   achats:Achat[] = [
     {
+      produit : "Pneu aaaaaaaaaaaaaaaaaaaaaaaaa",
+      dateAchat: new Date("2021-12-28"),
+      valid: false
+    },
+    {
       produit : "a",
       dateAchat: new Date("2021-12-28"),
       valid: false

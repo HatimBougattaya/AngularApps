@@ -12,7 +12,7 @@ table {
   flex: 4; text-align:left
 }
 .smallBut{
-  flex: 1;margin-right: 20px; text-align: right;
+  flex: 1;margin-right: auto; text-align: right;
 }
 
 .foot{

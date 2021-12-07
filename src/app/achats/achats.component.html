@@ -28,20 +28,20 @@
                         <mat-expansion-panel (opened)="panelOuvert = true" (closed)="panelOuvert = false">
                           <mat-expansion-panel-header>
                           <!-- Produit Label -->
-                          <mat-panel-title>
-                            <label class="labelBig">{{row.produit}}</label>  
+                          <mat-panel-title class="labelBig">
+                            <label >{{row.produit}}</label>  
                           </mat-panel-title>
                           <!-- Produit (C)RUD -->
-                          <mat-panel-description>
+                          <mat-panel-description class="labelBig">
+                            <label class="smallBut"> {{row.dateAchat | date}} </label>
                             <mat-icon class="smallBut" (click)="onAchatValid(row)"> verified </mat-icon>
-                            <mat-icon  (click)="onDeleteAchat(row)"> delete_outline </mat-icon>
+                            <mat-icon class="smallBut" (click)="onDeleteAchat(row)"> delete_outline </mat-icon>
                             
                           </mat-panel-description>
                         </mat-expansion-panel-header>
                         
                         <!-- Produit Details -->
                         <app-achat-details [row]="row" [i]="i" 
-                                          (deleteAchat)="onDeleteAchat($event)"
                         >
                         </app-achat-details>
                         </mat-expansion-panel>       
