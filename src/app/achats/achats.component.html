@@ -9,54 +9,56 @@
 
 <div>
     <mat-tab-group>
-        <mat-tab *ngFor="let statut of statusList">
-            <ng-template mat-tab-label>
-                <mat-icon >{{statut.icon}}</mat-icon>
+        <mat-tab *ngFor="let statut of statusList" >
+            <ng-template mat-tab-label >
+                <mat-icon  >{{statut.icon}}</mat-icon>
             <label>{{statut.name}}</label>
             </ng-template>
+            
             <div class="container">
-            <mat-table mat-table [dataSource]="dataSource" matSort>
-              <!-- Produit Column -->
-              <ng-container matColumnDef="produit" >
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> <label class="foot">Produit</label> </th>                
-                <section>
-                  <td mat-cell *matCellDef="let row; let i=index;" [hidden]="filterAchat(row.valid,statut.value)"> 
-                  <mat-expansion-panel (opened)="panelOuvert = true" (closed)="panelOuvert = false">
-                    <mat-expansion-panel-header>
-                   
-                    <mat-panel-title>
-                       <label class="labelBig">{{row.produit}}</label>  
-                    </mat-panel-title>
-
-                    <mat-panel-description>
-                      <mat-icon class="smallBut" (click)="onAchatValid(row)"> verified </mat-icon>
-                      <mat-icon  (click)="onDeleteAchat(row)"> delete_outline </mat-icon>
-                      
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  
-                  <app-achat-details [row]="row" [i]="i" 
-                                    (deleteAchat)="onDeleteAchat($event)"
-                  >
-                  </app-achat-details>
-                    <!--   
-
-
-                    -->
+              <mat-table mat-table [dataSource]="chooseData(statut)" matSort >
+                <!-- Produit Column -->
+                <ng-container matColumnDef="produit"  >
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header > 
+                    <label class="foot">Produit</label> </th>                
                     
-                  </mat-expansion-panel>       
-                 
-                </td>
-                </section>
-                
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsBis"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsBis;"></tr>
-              </ng-container>
+                    <!-- Content [hidden]="filterAchat(row.valid,statut.value)-->
+                    <section>
+                        <td mat-cell *matCellDef="let row; let i=index;"> 
+                        <mat-expansion-panel (opened)="panelOuvert = true" (closed)="panelOuvert = false">
+                          <mat-expansion-panel-header>
+                          <!-- Produit Label -->
+                          <mat-panel-title>
+                            <label class="labelBig">{{row.produit}}</label>  
+                          </mat-panel-title>
+                          <!-- Produit (C)RUD -->
+                          <mat-panel-description>
+                            <mat-icon class="smallBut" (click)="onAchatValid(row)"> verified </mat-icon>
+                            <mat-icon  (click)="onDeleteAchat(row)"> delete_outline </mat-icon>
+                            
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        
+                        <!-- Produit Details -->
+                        <app-achat-details [row]="row" [i]="i" 
+                                          (deleteAchat)="onDeleteAchat($event)"
+                        >
+                        </app-achat-details>
+                        </mat-expansion-panel>       
+                      
+                        </td>
+                    </section>
+                  <!-- Tab Def -->
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsBis"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsBis;"></tr>
+                </ng-container>
 
-            </mat-table>
-          </div>
+              </mat-table>
+            </div>
+        
         </mat-tab>
         
+         <!-- Achat Ajout -->
         <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon>post_add</mat-icon>

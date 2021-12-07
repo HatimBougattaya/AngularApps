@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AchatsService} from '../shared/achats.service';
+import { StatutAchat } from './statutAchat.model';
 
 @Component({
   selector: 'app-achats',
@@ -15,33 +16,21 @@ export class AchatsComponent implements OnInit {
   title = "Gestion des achats";
   panelOuvert = false;
   dataSource: MatTableDataSource<Achat> = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'produit', 'magasin', 'dateAchat','dateValidation'];
+  dataSourceFaux: MatTableDataSource<Achat> = new MatTableDataSource();
   displayedColumnsBis: string[] = ['produit'];
   achats:Achat[] = [];
-
+  statusList:StatutAchat[] = [];
   achatSelectionne?:Achat;
 
-  statusList = [
-      {
-        name : 'Validé',
-        icon: 'check_circle_outline',
-        value: true
-      },
-      {
-        name : 'Non Validé',
-        icon: 'highlight_off',
-        value: false
-      }
-  ];
   
-  //
+  //constructor
   constructor(private achatsService:AchatsService) {
    }
 
   //init
   ngOnInit(): void {
-    console.log("Appelé avant affichage");
     this.getAchats();
+    this.getStatuts();
   }
 
   //utility and events
@@ -50,33 +39,61 @@ export class AchatsComponent implements OnInit {
     return !truth;
   }
 
+  chooseData(st:StatutAchat) : MatTableDataSource<Achat> {
+    if(st.value){
+      return this.dataSource; 
+    }else{
+      return this.dataSourceFaux;
+    }
+  }
+
+  updateTabs(){
+    //init
+    this.dataSource = new MatTableDataSource();
+    this.dataSourceFaux = new MatTableDataSource();
+    //update
+    this.achats.forEach(element => {
+      if(element.valid){
+        this.dataSource.data.push(element);
+      }else{
+        this.dataSourceFaux.data.push(element);
+      }
+    });
+  }
+
   getAchats() {
     this.achatsService.getAchats()
     .subscribe(achats => {
       this.achats = achats;
       //init mattable
-      this.dataSource = new MatTableDataSource(this.achats);
+      this.updateTabs();
     });
+  }
+
+  getStatuts(){
+    this.achatsService.getStatuts().subscribe(statusList=>{
+      this.statusList = statusList;
+    })
   }
 
 
   onNouveauAchat(achat:Achat) {
     this.achatsService.addAchat(achat)
     .subscribe(message => {
-      this.dataSource = new MatTableDataSource(this.achats);
+      this.updateTabs();
       console.log(message);
     })
   }
 
   onAchatValid(achat:Achat) {
     achat.valid = true;
-    this.dataSource = new MatTableDataSource(this.achats);
+    this.updateTabs();;
   }
 
   onDeleteAchat(achat:Achat) {
     const position = this.achats.indexOf(achat);
     this.achats.splice(position, 1);
-    this.dataSource = new MatTableDataSource(this.achats);
+    this.updateTabs();
   }
 /*
   applyFilter(event: Event){

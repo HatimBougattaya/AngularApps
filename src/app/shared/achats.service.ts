@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {Achat} from '../achats/achat.model';
-
+import {StatutAchat} from '../achats/statutAchat.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,10 +21,28 @@ export class AchatsService {
       valid: false
     }
   ];
+
+  statusList:StatutAchat[] = [
+    {
+      name : 'Validé',
+      icon: 'check_circle_outline',
+      value: true
+    },
+    {
+      name : 'Non Validé',
+      icon: 'highlight_off',
+      value: false
+    }
+];
+  
   constructor() { }
 
   getAchats():Observable<Achat[]> {
     return of(this.achats);
+  }
+
+  getStatuts():Observable<StatutAchat[]>{
+    return of(this.statusList);
   }
 
   addAchat(achat:Achat):Observable<string> {
