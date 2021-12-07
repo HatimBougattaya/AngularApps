@@ -4,6 +4,16 @@ table {
 .container {
   margin-top: 20px;
 }
+.main{
+  display:flex;
+}
+
+.labelBig{
+  flex: 4; text-align:left
+}
+.smallBut{
+  flex: 1;margin-right: 20px; text-align: right;
+}
 
 .foot{
   font-size: 20px;

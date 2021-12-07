@@ -25,14 +25,19 @@
                     <mat-expansion-panel-header>
                    
                     <mat-panel-title>
-                       {{row.produit}}
+                       <label class="labelBig">{{row.produit}}</label>  
                     </mat-panel-title>
 
                     <mat-panel-description>
+                      <mat-icon class="smallBut" (click)="onAchatValid(row)"> verified </mat-icon>
+                      <mat-icon  (click)="onDeleteAchat(row)"> delete_outline </mat-icon>
+                      
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   
-                  <app-achat-details [row]="row" [i]="i" >
+                  <app-achat-details [row]="row" [i]="i" 
+                                    (deleteAchat)="onDeleteAchat($event)"
+                  >
                   </app-achat-details>
                     <!--   
 

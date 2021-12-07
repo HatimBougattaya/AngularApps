@@ -68,9 +68,15 @@ export class AchatsComponent implements OnInit {
     })
   }
 
+  onAchatValid(achat:Achat) {
+    achat.valid = true;
+    this.dataSource = new MatTableDataSource(this.achats);
+  }
+
   onDeleteAchat(achat:Achat) {
     const position = this.achats.indexOf(achat);
     this.achats.splice(position, 1);
+    this.dataSource = new MatTableDataSource(this.achats);
   }
 /*
   applyFilter(event: Event){
