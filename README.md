@@ -3,9 +3,7 @@
 
 ## Différences  par rapport à la dernière version 
 
--  Une description aussi sous forme de tableau qui s'affiche aprés avoir cliqué sur l'élement correspondant du tableau réalisé
-
-à l'aide de mat-expansion.
+-  Une description aussi sous forme de tableau qui s'affiche aprés avoir cliqué sur l'élement correspondant du tableau réalisé à l'aide de mat-expansion.
 
 - Deux boutons:
 	- Delete
