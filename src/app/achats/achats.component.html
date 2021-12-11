@@ -8,7 +8,7 @@
 </div>
 
 <div>
-    <mat-tab-group>
+    <mat-tab-group >
         <mat-tab *ngFor="let statut of statusList" >
             <ng-template mat-tab-label >
                 <mat-icon  >{{statut.icon}}</mat-icon>
@@ -49,7 +49,7 @@
                         </td>
                     </section>
                   <!-- Tab Def -->
-                  <tr mat-header-row *matHeaderRowDef="displayedColumnsBis"></tr>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsBis; sticky: true"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumnsBis;"></tr>
                 </ng-container>
 
