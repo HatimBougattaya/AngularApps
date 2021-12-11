@@ -22,6 +22,7 @@ import { MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddAchatComponent } from './achats/add-achat/add-achat.component';
 import { AchatDetailsComponent } from './achats/achat-details/achat-details.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //needed modules
 @NgModule({
@@ -43,7 +44,7 @@ import { AchatDetailsComponent } from './achats/achat-details/achat-details.comp
     MatTabsModule,
     MatExpansionModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatCardModule,MatTableModule,MatPaginatorModule
+    MatCardModule,MatTableModule,MatPaginatorModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AchatsService} from '../shared/achats.service';
 import { StatutAchat } from './statutAchat.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-achats',
@@ -20,17 +21,26 @@ export class AchatsComponent implements OnInit {
   displayedColumnsBis: string[] = ['produit'];
   achats:Achat[] = [];
   statusList:StatutAchat[] = [];
-  achatSelectionne?:Achat;
+  temp!:Achat;
 
   
   //constructor
-  constructor(private achatsService:AchatsService) {
-   }
+  constructor(private achatsService:AchatsService,private _snackBar: MatSnackBar) {
+  }
 
   //init
   ngOnInit(): void {
     this.getAchats();
     this.getStatuts();
+  }
+
+  //snackBar
+  openSnackBarDelete(message: string, action: string) {
+    let snack = this._snackBar.open(message, action);
+    snack.onAction().subscribe(()=>{
+      this.onNouveauAchat(this.temp);
+    })
+    
   }
 
   //utility and events
@@ -91,6 +101,8 @@ export class AchatsComponent implements OnInit {
   }
 
   onDeleteAchat(achat:Achat) {
+    this.temp = achat;
+    this.openSnackBarDelete( "Le produit "+achat.produit+" est supprimé" ,"Annuler");
     const position = this.achats.indexOf(achat);
     this.achats.splice(position, 1);
     this.updateTabs();

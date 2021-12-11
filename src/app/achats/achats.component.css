@@ -1,11 +1,21 @@
 table {
     width: 100%;
   }
+
+
+  .mat-row .mat-cell {
+    border-bottom: 0.5px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+
+  
 .container {
   margin-top: 20px;
-}
-.main{
-  display:flex;
+  overflow: auto;
 }
 
 .labelBig{

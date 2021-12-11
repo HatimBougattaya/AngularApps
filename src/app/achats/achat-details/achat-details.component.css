@@ -18,7 +18,9 @@ table {
     font-size: 14px;
     width: 100%;
   }
-  
+  .smallBut{
+    margin-left: 50px; text-align: right;
+  }
   td, th {
     width: 25%;
   }

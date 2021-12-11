@@ -13,7 +13,7 @@ export class AchatDetailsComponent implements OnInit {
 
   @Output() deleteAchat = new EventEmitter<Achat>();
 
-  displayedColumns: string[] = ['id', 'produit', 'magasin', 'dateAchat','dateValidation'];
+  displayedColumns: string[] = ['id', 'produit', 'magasin', 'dateAchat','dateValidation','delete'];
 
   constructor() { }
 
@@ -24,8 +24,5 @@ export class AchatDetailsComponent implements OnInit {
 
   onDelete() {
     this.deleteAchat.emit(this.row);
-
-    // on cache l'affichage du detail puisqu'il a été supprimé
-    //this.row = undefined;
   }
 }
