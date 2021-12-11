@@ -34,11 +34,19 @@ export class AchatsComponent implements OnInit {
     this.getStatuts();
   }
 
-  //snackBar
+  //snackBar : Delete
   openSnackBarDelete(message: string, action: string) {
     let snack = this._snackBar.open(message, action);
     snack.onAction().subscribe(()=>{
       this.onNouveauAchat(this.temp);
+    })
+    
+  }
+
+  //snackBar : Validé
+  openSnackBarValidate(message: string, action: string) {
+    let snack = this._snackBar.open(message, action);
+    snack.onAction().subscribe(()=>{
     })
     
   }
@@ -97,6 +105,7 @@ export class AchatsComponent implements OnInit {
 
   onAchatValid(achat:Achat) {
     achat.valid = true;
+    this.openSnackBarValidate("Lachat du produit: "+achat.produit+" est validé","Ok");
     this.updateTabs();;
   }
 

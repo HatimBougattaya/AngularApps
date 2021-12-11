@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Achat } from '../achat.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-achat',
   templateUrl: './add-achat.component.html',
@@ -13,10 +14,15 @@ export class AddAchatComponent implements OnInit {
   dateAchat!:Date;
 
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
+
+  openSnackBarAjout(message: string, action: string) {
+    let snack = this._snackBar.open(message, action);    
+  }
+
   onSubmit() {
     let newAchat = new Achat();
 
@@ -26,7 +32,7 @@ export class AddAchatComponent implements OnInit {
       newAchat.valid = false;
       newAchat.dateValidation = undefined;
       newAchat.dateAchat = this.dateAchat;
-
+      this.openSnackBarAjout("Ajout de l'achat du produit: "+this.nomProduit,"Ok");
       this.nouveauAchat.emit(newAchat);
     }
   }
