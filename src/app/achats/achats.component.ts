@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {Achat} from './achat.model';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AchatsService} from '../shared/achats.service';
 import { StatutAchat } from './statutAchat.model';
@@ -25,9 +24,7 @@ export class AchatsComponent implements OnInit, AfterViewInit {
 
   @ViewChild('pageTrue') paginator!: MatPaginator;
   @ViewChild('pageFalse') paginatorFaux!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
   
-
   constructor(private achatsService:AchatsService,private _snackBar: MatSnackBar) {
     //constructor
   }
@@ -42,10 +39,7 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-        
     this.dataSourceFaux.paginator = this.paginatorFaux;
-    this.dataSourceFaux.sort = this.sort;
   }
   
   //snackBar : Delete

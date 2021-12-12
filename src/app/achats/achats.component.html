@@ -23,10 +23,10 @@
           </div>
             <div class="container mat-elevation-z8">
 
-              <table mat-table [dataSource]="chooseData(statut)" matSort>
+              <table mat-table [dataSource]="chooseData(statut)">
                 <!-- Produit Column -->
                 <ng-container matColumnDef="produit">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header >  
+                  <th mat-header-cell *matHeaderCellDef>  
                     <label class="foot">Produit {{statut.name}}</label>
                   </th>                
                     <!-- Content -->
