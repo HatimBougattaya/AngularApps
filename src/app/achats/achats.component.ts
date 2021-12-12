@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {Achat} from './achat.model';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './achats.component.html',
   styleUrls: ['./achats.component.css']
 })
-export class AchatsComponent implements OnInit {
+export class AchatsComponent implements OnInit, AfterViewInit {
   //could stay no harm
   title = "Gestion des achats";
   panelOuvert = false;
@@ -23,9 +23,13 @@ export class AchatsComponent implements OnInit {
   statusList:StatutAchat[] = [];
   temp!:Achat;
 
+  @ViewChild('pageTrue') paginator!: MatPaginator;
+  @ViewChild('pageFalse') paginatorFaux!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   
-  //constructor
+
   constructor(private achatsService:AchatsService,private _snackBar: MatSnackBar) {
+    //constructor
   }
 
   //init
@@ -34,6 +38,16 @@ export class AchatsComponent implements OnInit {
     this.getStatuts();
   }
 
+  //afterview
+  
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+        
+    this.dataSourceFaux.paginator = this.paginatorFaux;
+    this.dataSourceFaux.sort = this.sort;
+  }
+  
   //snackBar : Delete
   openSnackBarDelete(message: string, action: string) {
     let snack = this._snackBar.open(message, action);
@@ -77,6 +91,9 @@ export class AchatsComponent implements OnInit {
         this.dataSourceFaux.data.push(element);
       }
     });
+    //update paginator with new data
+    this.dataSource.paginator = this.paginator;
+    this.dataSourceFaux.paginator = this.paginatorFaux;
   }
 
   getAchats() {
@@ -116,17 +133,25 @@ export class AchatsComponent implements OnInit {
     this.achats.splice(position, 1);
     this.updateTabs();
   }
-/*
-  applyFilter(event: Event){
+
+  applyFilter(event: Event,statut:StatutAchat){
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSource.filter);
-*/
-/*
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
+    
+    if(statut.value == true){
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
     }
 
+    if(statut.value == false){
+
+    this.dataSourceFaux.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceFaux.paginator) {
+      this.dataSourceFaux.paginator.firstPage();
+    }  
+    }
   }
-*/  
+  
 }

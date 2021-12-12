@@ -13,13 +13,22 @@
             <label>{{statut.name}}</label>
             </ng-template>
             
+            <div class="parent">
+            <mat-form-field appearance="fill" [style.width.em]="80" >
+              <div>
+                <mat-label></mat-label>
+                <input  matInput (keyup)="applyFilter($event,statut)" placeholder="Rechercher" style="text-align:center;" #input>
+              </div>
+            </mat-form-field>
+          </div>
             <div class="container mat-elevation-z8">
-              <table mat-table mat-table [dataSource]="chooseData(statut)" matSort >
+
+              <table mat-table [dataSource]="chooseData(statut)" matSort>
                 <!-- Produit Column -->
                 <ng-container matColumnDef="produit">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header > 
-                    <label class="foot">Produit {{statut.name}}</label> </th>                
-                    
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header >  
+                    <label class="foot">Produit {{statut.name}}</label>
+                  </th>                
                     <!-- Content -->
                     <section>
                         <td mat-cell *matCellDef="let row; let i=index;"> 
@@ -52,6 +61,8 @@
                 </ng-container>
 
               </table>
+              <mat-paginator #pageTrue *ngIf="statut.value==true" [pageSizeOptions]="[2,5, 10, 25, 100]" aria-label="Select page of products"></mat-paginator>
+              <mat-paginator #pageFalse *ngIf="statut.value==false" [pageSizeOptions]="[2,5, 10, 25, 100]" aria-label="Select page of products"></mat-paginator>
             </div>
         
         </mat-tab>

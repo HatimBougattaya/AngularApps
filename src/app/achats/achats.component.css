@@ -2,6 +2,17 @@ table {
     width: 100%;
   }
 
+  .parent {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .foot{
+    font-size: 20px;
+    margin-left: 15px;
+  }
 
   .mat-row .mat-cell {
     border-bottom: 0.5px solid transparent;
@@ -15,7 +26,6 @@ table {
   
 .container {
   margin-top: 20px;
-  overflow: auto;
   height: 100vh;
 }
 
@@ -26,10 +36,7 @@ table {
   flex: 1;margin-right: auto; text-align: right;
 }
 
-.foot{
-  font-size: 20px;
-  margin-left: 15px;
-}
+
 .mat-form-field {
     font-size: 14px;
     width: 100%;
