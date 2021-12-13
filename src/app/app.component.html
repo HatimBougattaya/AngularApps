@@ -1,2 +1,28 @@
-<app-achats> </app-achats>
+<div>
+    <mat-toolbar color = "primary" >
+      <a style="color: white;" routerLink="/home">
+        <span >{{title}}</span>
+      </a>
+    </mat-toolbar>  
+</div>
 
+<div class="container center">
+    <nav mat-tab-nav-bar  >
+    <div class="item">   
+          <a mat-tab-link *ngFor="let link of links" [routerLink]="link.link"
+            (click)="activeLink = link"
+            [active]="activeLink == link">
+            
+            <mat-icon>
+              {{link.name}}
+            </mat-icon>
+          </a>
+          
+    </div>
+    </nav>
+</div>
+
+<router-outlet></router-outlet>
+<!--
+here we should make tabs products and ajout
+-->

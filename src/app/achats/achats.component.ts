@@ -46,7 +46,9 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   openSnackBarDelete(message: string, action: string) {
     let snack = this._snackBar.open(message, action);
     snack.onAction().subscribe(()=>{
-      this.onNouveauAchat(this.temp);
+      this.achatsService.addAchat(this.temp);
+      this.updateTabs();
+
     })
     
   }
@@ -106,25 +108,20 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   }
 
 
-  onNouveauAchat(achat:Achat) {
-    this.achatsService.addAchat(achat)
-    .subscribe(message => {
-      this.updateTabs();
-      console.log(message);
-    })
+  onNouveauAchat() {
+    this.updateTabs();  
   }
 
   onAchatValid(achat:Achat) {
     achat.valid = true;
-    this.openSnackBarValidate("Lachat du produit: "+achat.produit+" est validé","Ok");
-    this.updateTabs();;
+    this.openSnackBarValidate("L'achat du produit: "+achat.produit+" est validé","Ok");
+    this.updateTabs();
   }
 
   onDeleteAchat(achat:Achat) {
     this.temp = achat;
     this.openSnackBarDelete( "Le produit "+achat.produit+" est supprimé" ,"Annuler");
-    const position = this.achats.indexOf(achat);
-    this.achats.splice(position, 1);
+    this.achatsService.deleteAchat(achat);
     this.updateTabs();
   }
 

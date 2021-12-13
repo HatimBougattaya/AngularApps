@@ -45,3 +45,15 @@ table {
   td, th {
     width: 25%;
   }
+  .containerB{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+  }
+  
+.item{
+  flex: auto;
+}
+  .center { 
+    justify-content: center; 
+  } 

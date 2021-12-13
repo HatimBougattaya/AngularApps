@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Achat-App';
+  title = 'Gestion des Achats';
+  links = [{
+              name:"inventory_2",
+              link:"/home"
+            },
+            {
+              name: 'post_add',
+              link:"/add"
+          }];
+  activeLink = this.links[0];
 }

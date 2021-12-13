@@ -1,6 +1,11 @@
 .form {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    margin:5px;
+    margin:auto;
+    width: 80%;
+    flex: auto;
   }
-  
+  .mat-form-field {
+    flex: auto;
+  }
+ 

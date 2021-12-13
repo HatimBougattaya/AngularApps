@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidDirective } from './shared/valid.directive';
@@ -23,7 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddAchatComponent } from './achats/add-achat/add-achat.component';
 import { AchatDetailsComponent } from './achats/achat-details/achat-details.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {routes} from './app-routing';
 //needed modules
 @NgModule({
   declarations: [
@@ -35,7 +35,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
@@ -44,7 +43,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTabsModule,
     MatExpansionModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatCardModule,MatTableModule,MatPaginatorModule,MatSnackBarModule
+    MatCardModule,MatTableModule,MatPaginatorModule,MatSnackBarModule,
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   providers: [],
   bootstrap: [AppComponent]

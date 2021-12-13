@@ -120,4 +120,10 @@ export class AchatsService {
     
     return of("Achat ajouté");
   }
+
+  deleteAchat(achat:Achat):Observable<string> {
+    const position = this.achats.indexOf(achat);
+    this.achats.splice(position, 1);
+    return of("Achat Supprimé");
+  }
 }
