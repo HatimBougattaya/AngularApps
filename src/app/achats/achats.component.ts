@@ -113,9 +113,12 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   }
 
   onAchatValid(achat:Achat) {
-    achat.valid = true;
-    this.openSnackBarValidate("L'achat du produit: "+achat.produit+" est validé","Ok");
-    this.updateTabs();
+    if(!achat.valid || !achat.dateValidation){
+      achat.valid = true;
+      achat.dateValidation = new Date();
+      this.openSnackBarValidate("L'achat du produit: "+achat.produit+" est validé","Ok");
+      this.updateTabs();
+    } 
   }
 
   onDeleteAchat(achat:Achat) {
