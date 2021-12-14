@@ -29,7 +29,7 @@
 - Fonctionement des SnackBar:
 	- Validation si et seulement si:
 		- L'achat n'est pas validé
-		- OU l'achat est validé mais la date de validation n'est pa initié
+		- OU l'achat est validé mais la date de validation n'est pa initiée
 
 - Les Services initialisent également les tableaux(validé/non validé) avec les nouvelles valeurs
 
