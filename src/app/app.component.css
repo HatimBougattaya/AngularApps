@@ -12,6 +12,14 @@
   flex: auto;
 }
 
+.itemB{
+  flex: 15;
+}
+.smallBut{
+  flex: 1;
+  margin-right:auto; text-align: right;
+}
+
 a {
    text-decoration: none !important;
 }

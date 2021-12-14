@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AchatsService } from './shared/achats.service';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +18,18 @@ export class AppComponent {
               link:"/add"
           }];
   activeLink = this.links[0];
+
+  constructor(
+    private achatsService:AchatsService,
+    private router:Router) {}
+
+  genererDonneesDeTest() {
+    this.achatsService.peuplerBDAvecForkJoin()
+    .subscribe(() => {
+      // ok, les 1000 données ont bien été insérées...
+      console.log("TOUTES LES DONNEES ONT BIEN ETE INSEREES");
+
+      this.router.navigate(["/home"]);
+    });
+  }
 }

@@ -24,6 +24,8 @@ import { AddAchatComponent } from './achats/add-achat/add-achat.component';
 import { AchatDetailsComponent } from './achats/achat-details/achat-details.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {routes} from './app-routing';
+import { HttpClientModule } from '@angular/common/http';
+
 //needed modules
 @NgModule({
   declarations: [
@@ -44,7 +46,7 @@ import {routes} from './app-routing';
     MatExpansionModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatCardModule,MatTableModule,MatPaginatorModule,MatSnackBarModule,
-    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

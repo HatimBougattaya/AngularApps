@@ -12,7 +12,7 @@ import { StatutAchat } from '../statutAchat.model';
 export class AddAchatComponent implements OnInit {
 
   //for matTab
-  @Output() nouveauAchat = new EventEmitter<any>();
+  //@Output() nouveauAchat = new EventEmitter<any>();
   nomProduit!:String;
   nomMagasin!:String;
   dateAchat!:Date;
@@ -42,18 +42,18 @@ export class AddAchatComponent implements OnInit {
     let newAchat = new Achat();
 
     if (this.nomProduit && this.dateAchat) {
+      newAchat.id = Math.round(Math.random()*10000000);
       newAchat.produit = this.nomProduit;
       newAchat.magasin = this.nomMagasin;
-      newAchat.valid = false;
-      newAchat.dateValidation = undefined;
       newAchat.dateAchat = this.dateAchat;
+      newAchat.valid = false;
       this.openSnackBarAjout("Ajout de l'achat du produit: "+this.nomProduit,"Ok");
-      this.achatService.addAchat(newAchat).subscribe(message => {
-        console.log(message);
+      this.achatService.addAchat(newAchat).subscribe(reponse => {
+        console.log(reponse.message);
+        //this.nouveauAchat.emit();
+        this.router.navigate(["/home"]);
       });
-      //update Front
-      this.nouveauAchat.emit();
-      this.router.navigate(["/home"]);
+      
     }
   }
 }

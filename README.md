@@ -17,14 +17,19 @@
 		- Supprime l'élement
 		- Affiche un snackBar qui permet d'annuler la suppression
 	- Validate
-		- Affiche un snackBar Informatid
+		- Affiche un snackBar Informatif 
 
-- Une interface divisé en 3 TAB à l'aide de mat-tab : 
+- Une interface divisé en 3 TAB à l'aide de mat-tab et mat-tab-nav-bar(pour les anchors) : 
 	- Achat Validé
 	- Achat Non Validé
 	- Ajout Achat
 		- Formulaire qui se réinitialise après validation du formulaire
 		- Affiche un snackBar informatif après ajout du produit 
+
+- Fonctionement des SnackBar:
+	- Validation si et seulement si:
+		- L'achat n'est pas validé
+		- OU l'achat est validé mais la date de validation n'est pa initié
 
 - Les Services initialisent également les tableaux(validé/non validé) avec les nouvelles valeurs
 

@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {AchatsService} from '../shared/achats.service';
 import { StatutAchat } from './statutAchat.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-achats',
@@ -25,7 +26,8 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   @ViewChild('pageTrue') paginator!: MatPaginator;
   @ViewChild('pageFalse') paginatorFaux!: MatPaginator;
   
-  constructor(private achatsService:AchatsService,private _snackBar: MatSnackBar) {
+  constructor(private achatsService:AchatsService,private _snackBar: MatSnackBar,
+    private router: Router,private route: ActivatedRoute,) {
     //constructor
   }
 
@@ -33,6 +35,12 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAchats();
     this.getStatuts();
+   // let id: number = +this.route.snapshot.params['id'];
+/*
+    this.achatsService.getAchat(id).subscribe((assignment) => {
+      this.assignmentTransmis = assignment;
+    });
+    */
   }
 
   //afterview
@@ -46,9 +54,12 @@ export class AchatsComponent implements OnInit, AfterViewInit {
   openSnackBarDelete(message: string, action: string) {
     let snack = this._snackBar.open(message, action);
     snack.onAction().subscribe(()=>{
-      this.achatsService.addAchat(this.temp);
-      this.updateTabs();
-
+      this.achatsService.addAchat(this.temp).subscribe((reponse) => {
+        console.log(reponse.message);
+        //init mattable
+        //this.updateTabs();
+        this.redirectTo('/home');
+      });
     })
     
   }
@@ -107,25 +118,42 @@ export class AchatsComponent implements OnInit, AfterViewInit {
     })
   }
 
-
+/*
   onNouveauAchat() {
     this.updateTabs();  
   }
-
+*/
   onAchatValid(achat:Achat) {
     if(!achat.valid || !achat.dateValidation){
       achat.valid = true;
       achat.dateValidation = new Date();
       this.openSnackBarValidate("L'achat du produit: "+achat.produit+" est validé","Ok");
-      this.updateTabs();
+
+      this.achatsService.updateAchat(achat).subscribe((reponse) => {
+        console.log(reponse.message);
+        //init mattable
+        this.updateTabs();
+        this.router.navigate(['/home']);
+      });
     } 
   }
+
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 
   onDeleteAchat(achat:Achat) {
     this.temp = achat;
     this.openSnackBarDelete( "Le produit "+achat.produit+" est supprimé" ,"Annuler");
-    this.achatsService.deleteAchat(achat);
-    this.updateTabs();
+    
+    this.achatsService.deleteAchat(achat).subscribe((reponse) => {
+      console.log(reponse.message);
+      //init mattable
+      this.updateTabs();
+      this.redirectTo('/home');
+
+    });
   }
 
   applyFilter(event: Event,statut:StatutAchat){
